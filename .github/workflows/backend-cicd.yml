@@ -44,9 +44,6 @@ jobs:
       - name: Check Terraform token
         run: echo "Token set? ${TF_API_TOKEN:+yes}" 
 
-      - name: Terraform Login
-        run: terraform login --token $TF_API_TOKEN
-
       - name: Terraform Deploy
         run: |
           cd infra
