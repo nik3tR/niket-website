@@ -1,0 +1,53 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin: 5rem;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.text-container h1 {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 1s forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.text-container h2 {
+  width: 0;
+  overflow: hidden;  
+  white-space: nowrap;
+  margin: 0.25rem 0 0;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #666;
+  animation: typing 1s forwards;  
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes typing2 {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.profile-picture {
+    white-space: nowrap;
+    width: 0px;
+    height: 180px;
+    border-radius: 10%;
+    object-fit: cover;
+    animation: typing2 2s forwards;
+}
+

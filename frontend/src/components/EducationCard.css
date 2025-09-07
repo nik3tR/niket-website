@@ -1,0 +1,32 @@
+.education-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fcfcfc;
+  display: flex;
+  flex-direction: row;
+  transition: box-shadow 0.2s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.education-card h3, p {
+    margin: 0;
+}
+
+.school-logo {
+    width: 50px;
+    height: auto;
+    align-self: center;
+    justify-content: center;
+    padding-right: 3rem;
+    padding-left: 1rem;
+}
+
+.edu-text {
+    align-content: center;
+}
+

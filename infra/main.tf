@@ -115,6 +115,12 @@ resource "aws_dynamodb_table_item" "visitor_count" {
   "count": {"N": "667"}
 }
 ITEM
+
+  lifecycle {
+    ignore_changes = [
+      item
+    ]
+  }
 }
 
 # allow lambda to assume roles

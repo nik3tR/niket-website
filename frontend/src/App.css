@@ -1,0 +1,33 @@
+.App {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  margin: 0 auto;
+}
+
+.section-row {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.section-title {
+  display: flex;
+  flex: 0 0 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-content {
+  flex: 1;
+}
+
+.section-divider {
+  width: 100%;
+  max-width: 900px;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 2rem 0;
+}
