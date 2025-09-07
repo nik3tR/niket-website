@@ -43,7 +43,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+        
+
       - name: Terraform Deploy
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
         run: |
           cd infra
           terraform init
