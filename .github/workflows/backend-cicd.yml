@@ -37,11 +37,6 @@ jobs:
           role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
           aws-region: us-east-1
 
-      - name: Debug OIDC token
-        run: |
-          echo "ID Token:"
-          gh actions print-oidc-token
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
