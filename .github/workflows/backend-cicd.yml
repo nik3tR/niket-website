@@ -5,7 +5,7 @@ on:
       - 'backend/**'
     branches:
       - main
-
+  workflow_dispatch:
 env:   
   TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
 
