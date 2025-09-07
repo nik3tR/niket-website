@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+env:   
+  TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+
 jobs:
   build-and-deploy:
     name: Build and Deploy Lambda
@@ -39,8 +42,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Deploy
-        env:   
-          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           cd infra
           terraform init
