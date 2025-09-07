@@ -35,15 +35,8 @@ jobs:
           role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
           aws-region: us-east-1
 
-      - name: Verify AWS Credentials
-        run: |
-          echo "Checking AWS identity..."
-          aws sts get-caller-identity
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-
-        
 
       - name: Terraform Deploy
         env:
@@ -51,4 +44,7 @@ jobs:
         run: |
           cd infra
           terraform init
+          terraform import aws_s3_bucket.niketrathod niketrathod.com
+          terraform import aws_dynamodb_table.visitor_Counter niketrathod.com_visitorCounter
+          terraform import aws_iam_role.lambda_role updateVisitorCountRole
           terraform apply -auto-approve
