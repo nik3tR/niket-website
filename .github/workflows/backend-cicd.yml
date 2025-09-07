@@ -6,8 +6,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-env:   
-  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
 jobs:
   build-and-deploy:
@@ -33,6 +31,7 @@ jobs:
           ls -lh infra/lambda/updateVisitorCount.zip
 
       - name: Configure AWS Credentials
+        id: aws_creds
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
@@ -41,10 +40,12 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Check Terraform token
-        run: echo "Token set? ${TF_API_TOKEN:+yes}" 
-
       - name: Terraform Deploy
+        env:   
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ steps.aws_creds.outputs.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.aws_creds.outputs.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ steps.aws_creds.outputs.AWS_SESSION_TOKEN }}
         run: |
           cd infra
           terraform init
