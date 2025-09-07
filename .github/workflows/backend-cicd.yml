@@ -37,15 +37,17 @@ jobs:
           role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
           aws-region: us-east-1
 
+      - name: Debug OIDC token
+        run: |
+          echo "ID Token:"
+          gh actions print-oidc-token
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Deploy
         env:   
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ steps.aws.outputs.AWS_SESSION_TOKEN }}
         run: |
           cd infra
           terraform init
