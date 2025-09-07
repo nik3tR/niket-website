@@ -31,7 +31,7 @@ jobs:
           ls -lh infra/lambda/updateVisitorCount.zip
 
       - name: Configure AWS Credentials
-        id: aws_creds
+        id: aws
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
@@ -43,6 +43,9 @@ jobs:
       - name: Terraform Deploy
         env:   
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ steps.aws.outputs.AWS_SESSION_TOKEN }}
         run: |
           cd infra
           terraform init
