@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "niketrathod" {
     bucket = "niketrathod.com"
 }
 
-# S3 Bucket Policy ((lets cloudfront access)
+# S3 Bucket Policy (lets cloudfront access)
 
 resource "aws_s3_bucket_policy" "niketrathod_policy" {
     bucket = aws_s3_bucket.niketrathod.id
