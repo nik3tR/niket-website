@@ -39,8 +39,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Deploy
-        env:
-          TF_API_TOKEN: 6Pb0yL271zOUrA.atlasv1.OiXOS5zBoN2wQXvIF8Zb541EwqTx9zKXMSqbI8ZmlGqzvohA1sxGuT7fD4AaN0DHKUQ
+        env:   
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           cd infra
           terraform init
