@@ -45,7 +45,4 @@ jobs:
         run: |
           cd infra
           terraform init
-          terraform import aws_s3_bucket.niketrathod niketrathod.com
-          terraform import aws_dynamodb_table.visitor_Counter niketrathod.com_visitorCounter
-          terraform import aws_iam_role.lambda_role updateVisitorCountRole
           terraform apply -auto-approve
