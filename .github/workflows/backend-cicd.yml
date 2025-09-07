@@ -36,13 +36,11 @@ jobs:
           aws-region: us-east-1
 
       - name: Setup Terraform
-        env:
-          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Deploy
         env:
-          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          TF_API_TOKEN: 6Pb0yL271zOUrA.atlasv1.OiXOS5zBoN2wQXvIF8Zb541EwqTx9zKXMSqbI8ZmlGqzvohA1sxGuT7fD4AaN0DHKUQ
         run: |
           cd infra
           terraform init
