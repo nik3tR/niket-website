@@ -8,6 +8,7 @@ def lambda_handler(event, context):
 
     body = event.get('body')
 
+    #if no body error
     if not body:
         return {
             "statusCode": 400,
