@@ -10,6 +10,9 @@ jobs:
   build-and-deploy:
     name: Build and Deploy Lambda
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout Repo
@@ -26,6 +29,17 @@ jobs:
           zip -j infra/lambda/updateVisitorCount.zip backend/lambda_function.py
           ls -lh infra/lambda/updateVisitorCount.zip
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
+          aws-region: us-east-1
+
+      - name: Verify AWS Credentials
+        run: |
+          echo "Checking AWS identity..."
+          aws sts get-caller-identity
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -34,7 +48,3 @@ jobs:
           cd infra
           terraform init
           terraform apply -auto-approve
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
