@@ -77,10 +77,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
 
-  tags = {
-    "Name" = "niketrathod.com"
-  }
-
   viewer_certificate {
   acm_certificate_arn      = "arn:aws:acm:us-east-1:681121191318:certificate/35225c25-e8f9-49e8-bd53-128ddd642fe1"
   ssl_support_method       = "sni-only"
