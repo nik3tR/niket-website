@@ -169,7 +169,12 @@ resource "aws_apigatewayv2_api" "api_gateway" {
     allow_credentials = false
     allow_origins = ["*"]
   }
+}
 
+resource "aws_apigatewayv2_stage" "default" {
+  api_id     = aws_apigatewayv2_api.api_gateway.id
+  name       = "$default"
+  auto_deploy = true
 }
 
 resource "aws_apigatewayv2_integration" "lambda_integration" {
