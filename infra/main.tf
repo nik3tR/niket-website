@@ -54,7 +54,7 @@ resource "aws_s3_bucket_policy" "niketrathod_policy" {
     )
 }
 
-# Cloudfront Distribution
+# Cloudfront Distribution)
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
@@ -108,26 +108,6 @@ resource "aws_dynamodb_table" "visitor_Counter" {
   }
 }
 
-# dynamoDB count item
-
-resource "aws_dynamodb_table_item" "visitor_count" {
-  table_name = aws_dynamodb_table.visitor_Counter.name
-  hash_key   = aws_dynamodb_table.visitor_Counter.hash_key
-
-  item = <<ITEM
-{
-  "counterId": {"S": "visitorCounter"},
-  "count": {"N": "667"}
-}
-ITEM
-
-  lifecycle {
-    ignore_changes = [
-      item
-    ]
-  }
-}
-
 # allow lambda to assume roles
 
 data "aws_iam_policy_document" "assume_role" {
@@ -167,7 +147,7 @@ resource "aws_iam_role_policy_attachment" "micro_execution" {
 }
 
 resource "aws_lambda_function" "my_lambda" {
-  filename = "${path.module}/lambda/updateVisitorCount.zip"
+  filename = "./lambda/updateVisitorCount.zip"
   function_name = "updateVisitorCount"
   handler = "lambda_function.lambda_handler"
   runtime = "python3.13" 
