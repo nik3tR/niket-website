@@ -46,8 +46,4 @@ jobs:
         run: |
           cd infra
           terraform init -lock=false
-          
-          # Lambda Function
-          terraform import -lock=false aws_lambda_function.my_lambda updateVisitorCount
-
           terraform apply -lock=false -auto-approve
