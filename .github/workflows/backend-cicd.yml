@@ -46,7 +46,5 @@ jobs:
         run: |
           cd infra
           terraform init -lock=false
-          terraform import -lock=false aws_lambda_permission.allow_apigateway updateVisitorCount/AllowAPIGatewayInvocation
-          terraform import -lock=false aws_dynamodb_table_item.visitor_count niketrathod.com_visitorCounter:visitorCounter
           terraform plan -lock=false
           terraform apply -lock=false -auto-approve
