@@ -49,14 +49,5 @@ jobs:
           
           # Lambda Function
           terraform import -lock=false aws_lambda_function.my_lambda updateVisitorCount
-          
-          # API Gateway
-          terraform import -lock=false aws_apigatewayv2_api.api_gateway 7s6992vnf6
-          
-          # API Gateway Integration
-          terraform import -lock=false aws_apigatewayv2_integration.lambda_integration 7s6992vnf6/s7ba9jc
-          
-          # API Gateway Route
-          terraform import -lock=false aws_apigatewayv2_route.post_route 7s6992vnf6/janzj4d
 
           terraform apply -lock=false -auto-approve
