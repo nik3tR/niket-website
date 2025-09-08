@@ -58,9 +58,6 @@ jobs:
           cd infra
           terraform init -lock=false
           
-          # DynamoDB Table Item
-          terraform import -lock=false aws_dynamodb_table_item.visitor_count niketrathod.com_visitorCounter:visitorCounter
-          
           # IAM Role for Lambda
           terraform import -lock=false aws_iam_role.lambda_role updateVisitorCountRole
           
