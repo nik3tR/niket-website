@@ -58,10 +58,6 @@ jobs:
           cd infra
           terraform init -lock=false
           
-          # CloudFront Distribution
-          # Replace <CLOUDFRONT_DIST_ID> with your existing distribution ID from AWS
-          terraform import -lock=false aws_cloudfront_distribution.s3_distribution E34XNASCEYM453
-          
           # DynamoDB Table Item
           terraform import -lock=false aws_dynamodb_table_item.visitor_count niketrathod.com_visitorCounter:visitorCounter
           
