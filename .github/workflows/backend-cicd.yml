@@ -57,8 +57,6 @@ jobs:
           echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
           cd infra
           terraform init -lock=false
-          # S3 Bucket
-          terraform import -lock=false aws_s3_bucket.niketrathod niketrathod.com
           
           # CloudFront Distribution
           # Replace <CLOUDFRONT_DIST_ID> with your existing distribution ID from AWS
