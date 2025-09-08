@@ -40,9 +40,16 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Check AWS Identity
+        run: aws sts get-caller-identity
+
+
       - name: Terraform Deploy
         env:   
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.access-key-id }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.secret-access-key }}
+          AWS_SESSION_TOKEN: ${{ steps.aws.outputs.session-token }}
         run: |
           cd infra
           terraform init
