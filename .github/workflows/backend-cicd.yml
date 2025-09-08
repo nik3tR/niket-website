@@ -40,31 +40,12 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Check AWS Identity
-        run: aws sts get-caller-identity
-
-      - name: Debug Terraform AWS creds
-        run: |
-          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
-          echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:0:10}..."
-
-
-
       - name: Terraform Deploy
         env:   
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
-          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
           cd infra
           terraform init -lock=false
-          
-          # IAM Role for Lambda
-          terraform import -lock=false aws_iam_role.lambda_role updateVisitorCountRole
-          
-          # IAM Role Policy Attachments
-          terraform import -lock=false aws_iam_role_policy_attachment.DynamoDB_full_access updateVisitorCountRole/arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
-          terraform import -lock=false aws_iam_role_policy_attachment.basic_execution updateVisitorCountRole/arn:aws:iam::681121191318:policy/service-role/AWSLambdaBasicExecutionRole-fc45e792-37dc-4b2a-833d-18063c0a4dc2
-          terraform import -lock=false aws_iam_role_policy_attachment.micro_execution updateVisitorCountRole/arn:aws:iam::681121191318:policy/service-role/AWSLambdaMicroserviceExecutionRole-2e0ad9eb-6462-4935-9c50-5dcc03b3d85d
           
           # Lambda Function
           terraform import -lock=false aws_lambda_function.my_lambda updateVisitorCount
