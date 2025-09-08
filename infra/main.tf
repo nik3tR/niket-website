@@ -160,7 +160,6 @@ resource "aws_lambda_permission" "allow_apigateway" {
   function_name = aws_lambda_function.my_lambda.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.api_gateway.execution_arn}/*/*"
-  depends_on = [aws_apigatewayv2_route.post_route]
 }
 
 resource "aws_apigatewayv2_api" "api_gateway" {
