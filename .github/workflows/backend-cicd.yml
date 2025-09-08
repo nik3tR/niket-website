@@ -43,14 +43,18 @@ jobs:
       - name: Check AWS Identity
         run: aws sts get-caller-identity
 
+      - name: Debug Terraform AWS creds
+        run: |
+          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+          echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:0:10}..."
+
+
 
       - name: Terraform Deploy
         env:   
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.access-key-id }}
-          AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.secret-access-key }}
-          AWS_SESSION_TOKEN: ${{ steps.aws.outputs.session-token }}
         run: |
+          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
           cd infra
           terraform init
           terraform apply -auto-approve
