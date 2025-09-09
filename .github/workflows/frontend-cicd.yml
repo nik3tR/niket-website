@@ -10,12 +10,13 @@ jobs:
   build-and-deploy-website:
     name: Package frontend code and upload to S3 Bucket 
     runs-on: ubuntu-latest
-
+        
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
       - name: Build website code
+        working-directory: frontend
         run: |
           npm install 
           npm run build
