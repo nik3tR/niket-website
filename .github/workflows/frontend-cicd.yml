@@ -1,0 +1,34 @@
+on:
+  push:
+    paths:
+      - 'frontend/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy-website:
+    name: Package frontend code and upload to S3 Bucket 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Build website code
+        run: |
+          npm install 
+          npm run build
+
+      - name: Configure AWS Credentials
+        id: aws
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
+          aws-region: us-east-1
+
+      - name: Sync files to S3 Bucket
+        run: aws s3 sync frontend/dist/ s3://niketrathod.com --delete
+
+      - name: Invalidate Cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id E34XNASCEYM453 --paths "/*"
