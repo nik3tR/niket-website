@@ -10,7 +10,9 @@ jobs:
   build-and-deploy-website:
     name: Package frontend code and upload to S3 Bucket 
     runs-on: ubuntu-latest
-        
+    permissions:
+      id-token: write
+      contents: read    
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
