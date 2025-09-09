@@ -51,8 +51,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
+        with:  
           spec: frontend/cypress/e2e/visitorCountTest.cy.js
+          working-directory: frontend
           build: npm run build
           start: npm start
           browser: chrome
