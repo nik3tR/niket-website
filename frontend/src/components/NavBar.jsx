@@ -1,5 +1,5 @@
-import './Navbar.css';
-import { FaGithub, FaLinkedin, FaAlignJustify } from 'react-icons/fa';
+import './NavBar.css'
+import { FaGithub, FaLinkedin, FaAlignJustify } from 'react-icons/fa'
 
 function Navbar() {
   return (
