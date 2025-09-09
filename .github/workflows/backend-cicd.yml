@@ -53,3 +53,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           spec: frontend/cypress/e2e/visitorCountTest.cy.js
+          build: npm run build
+          start: npm start
+          browser: chrome
