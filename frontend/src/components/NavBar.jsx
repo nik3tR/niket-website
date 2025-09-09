@@ -1,4 +1,4 @@
-import './Navbar.css'
+import './NavBar.css'
 import { FaGithub, FaLinkedin, FaAlignJustify } from 'react-icons/fa'
 
 function Navbar() {
