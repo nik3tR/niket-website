@@ -55,4 +55,4 @@ jobs:
           spec: frontend/cypress/e2e/visitorCountTest.cy.js
           working-directory: frontend
           build: npm run build
-          start: npm start
+          start: npx cypress run
