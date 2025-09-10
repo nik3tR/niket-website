@@ -24,6 +24,7 @@
   flex: 1;
 }
 
+
 .section-divider {
   width: 100%;
   max-width: 900px;
@@ -31,3 +32,5 @@
   background-color: #e0e0e0;
   margin: 2rem 0;
 }
+
+
