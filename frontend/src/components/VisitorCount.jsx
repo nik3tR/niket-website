@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function VisitorCount() {
     const [count, setCount] = useState(null);
     useEffect(() => {
-        fetch("https://ms042k0x8i.execute-api.us-east-1.amazonaws.com/", {
+        fetch("https://hxwka8k4m0.execute-api.us-east-1.amazonaws.com/", {
         method: "POST",
         body: JSON.stringify({}),
     })
