@@ -27,7 +27,7 @@ jobs:
         id: aws
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::681121191318:role/GithubAdminAccess
+          role-to-assume: arn:aws:iam::012633543873:role/GithubAdminAccess
           aws-region: us-east-1
 
       - name: Sync files to S3 Bucket
