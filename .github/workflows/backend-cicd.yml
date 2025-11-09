@@ -45,9 +45,9 @@ jobs:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           cd infra
-          terraform init -lock=false
-          terraform plan -lock=false
-          terraform apply -lock=false -auto-approve
+          terraform init
+          terraform plan
+          terraform apply -auto-approve
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
