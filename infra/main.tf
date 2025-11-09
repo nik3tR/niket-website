@@ -1,5 +1,12 @@
 terraform {
+  cloud { 
+    
+    organization = "niket-org" 
 
+    workspaces { 
+      name = "niket-website" 
+    } 
+  } 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
